@@ -1,0 +1,2375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bio Team | Advanced Biology & Biotech Platform</title>
+  <!-- Google Fonts: Inter (أنيق وحديث) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="    https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css    " />
+  <!-- Bootstrap Icons (مهم لطريقة العرض السابقة) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css  ">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4f8, #e6f0ff);
+      color: #2d3748;
+      line-height: 1.7;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+      padding: 16px 0;
+      z-index: 1000;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      transition: top 0.3s ease, background 0.4s ease;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    nav ul li {
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      color: rgba(255, 255, 255, 0.92);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 10px 16px;
+      border-radius: 8px;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    nav ul li a:hover {
+      color: #64b5f6;
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    /* Dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: rgba(15, 32, 39, 0.95);
+      min-width: 240px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      z-index: 1001;
+      border-radius: 12px;
+      overflow: hidden;
+      top: 100%;
+      margin-top: 8px;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .dropdown-content a {
+      color: #e2e8f0;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .dropdown-content a:hover {
+      background: rgba(100, 181, 246, 0.15);
+      color: #64b5f6;
+      padding-left: 28px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: fadeInSlideDown 0.35s ease;
+    }
+
+    @keyframes fadeInSlideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Pages */
+    .page {
+      display: none;
+      padding: 140px 24px 120px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .active {
+      display: block;
+      animation: fadeInContent 0.6s ease;
+    }
+
+    @keyframes fadeInContent {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Back Button */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #4a6cf7, #6a11cb);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 28px;
+      box-shadow: 0 6px 16px rgba(106, 17, 203, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(106, 17, 203, 0.4);
+      background: linear-gradient(135deg, #5a7cff, #7a21db);
+    }
+
+    h1 {
+      font-size: 2.9rem;
+      margin-bottom: 24px;
+      color: #1a202c;
+      text-align: center;
+      position: relative;
+      font-weight: 700;
+    }
+
+    h1:after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 5px;
+      background: linear-gradient(to right, #4a6cf7, #6a11cb);
+      margin: 14px auto;
+      border-radius: 3px;
+    }
+
+    p {
+      font-size: 1.12rem;
+      color: #4a5568;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+
+    .options-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 36px;
+    }
+
+    .option-card {
+      background: white;
+      border-radius: 20px;
+      padding: 36px 30px;
+      text-align: center;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer; /* مهم لجعله قابلاً للنقر */
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideInUp 0.7s forwards;
+    }
+
+    .option-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(to right, #4a6cf7, #6a11cb);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .option-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .option-card:nth-child(1) { animation-delay: 0.1s; }
+    .option-card:nth-child(2) { animation-delay: 0.2s; }
+    .option-card:nth-child(3) { animation-delay: 0.3s; }
+    .option-card:nth-child(4) { animation-delay: 0.4s; }
+    .option-card:nth-child(5) { animation-delay: 0.5s; }
+    .option-card:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .option-card:hover {
+      transform: translateY(-14px) scale(1.025);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+      background: linear-gradient(145deg, #ffffff, #f8fafc);
+    }
+
+    .option-card i {
+      font-size: 3.2rem;
+      margin-bottom: 22px;
+      display: block;
+      transition: all 0.35s ease;
+    }
+
+    .option-card h3 {
+      font-size: 1.55rem;
+      color: #2d3748;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .option-card p {
+      font-size: 1.08rem;
+      color: #718096;
+      line-height: 1.65;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      text-align: center;
+      padding: 70px 30px;
+      background: linear-gradient(135deg, #f8fafc, #edf2f7);
+      border-radius: 24px;
+      margin-bottom: 50px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .hero-icon {
+      font-size: 5.5rem;
+      color: #4a6cf7;
+      margin-bottom: 24px;
+      animation: pulse 2.2s infinite;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+      100% { transform: scale(1); }
+    }
+
+    .hero-title {
+      font-size: 3.2rem;
+      color: #1a202c;
+      margin-bottom: 22px;
+      font-weight: 800;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: #4a6cf7;
+      margin-bottom: 32px;
+      font-weight: 600;
+    }
+
+    .mission-statement {
+      font-size: 1.25rem;
+      color: #4a5568;
+      max-width: 850px;
+      margin: 0 auto 44px;
+      line-height: 1.8;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 36px;
+      margin-top: 56px;
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 22px;
+      padding: 40px 35px;
+      text-align: center;
+      box-shadow: 0 14px 36px rgba(0,0,0,0.09);
+      transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideInUp 0.7s forwards;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(to right, #6a11cb, #4a6cf7);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-card:nth-child(1) { animation-delay: 0.2s; }
+    .feature-card:nth-child(2) { animation-delay: 0.4s; }
+    .feature-card:nth-child(3) { animation-delay: 0.6s; }
+
+    .feature-card:hover {
+      transform: translateY(-14px) scale(1.03);
+      box-shadow: 0 22px 48px rgba(0,0,0,0.18);
+      background: linear-gradient(145deg, #ffffff, #f8fafc);
+    }
+
+    .feature-icon {
+      font-size: 3.8rem;
+      margin-bottom: 24px;
+      display: block;
+      transition: all 0.35s ease;
+    }
+
+    .feature-title {
+      font-size: 1.65rem;
+      color: #2d3748;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    .feature-desc {
+      color: #718096;
+      font-size: 1.12rem;
+      line-height: 1.75;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #0f2027, #1a2530);
+      color: #e2e8f0;
+      padding: 60px 24px 30px;
+      margin-top: 70px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 36px;
+    }
+
+    .footer-col h3 {
+      font-size: 1.5rem;
+      margin-bottom: 22px;
+      color: #64b5f6;
+      font-weight: 600;
+    }
+
+    .footer-col p, .footer-col a {
+      color: #cbd5e0;
+      margin-bottom: 12px;
+      display: block;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 1.02rem;
+    }
+
+    .footer-col a:hover {
+      color: #64b5f6;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      font-size: 1.4rem;
+      transition: all 0.35s;
+    }
+
+    .social-icons a:hover {
+      background: #4a6cf7;
+      transform: scale(1.15) rotate(8deg);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 36px;
+      margin-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #a0aec0;
+      font-size: 0.95rem;
+    }
+
+    /* Mobile */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.7rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-btn { display: block; }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: #0f2027;
+        padding: 24px;
+        border-radius: 0 0 20px 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      }
+      nav ul.show { display: flex; }
+      nav ul li { margin: 12px 0; }
+      .dropdown-content {
+        position: static;
+        display: none;
+        background: #1a2530;
+        margin-top: 10px;
+        border-radius: 16px;
+      }
+      .dropdown:hover .dropdown-content { display: none; }
+      .dropdown.active .dropdown-content { display: block; }
+      .hero-title { font-size: 2.2rem; }
+      .hero-subtitle { font-size: 1.2rem; }
+      h1 { font-size: 2.3rem; }
+      .option-card i { font-size: 2.7rem; }
+    }
+    .logo-text {
+  font-weight: 800;
+  color: white;
+  font-size: 1.6rem;
+  position: relative;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: text-shadow 0.3s ease;
+}
+
+.logo-text::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(to right, #4a6cf7, #6a11cb);
+  border-radius: 2px;
+  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.logo:hover .logo-text::after,
+.logo:focus .logo-text::after {
+  width: 100%;
+}
+
+.logo:hover .fas.fa-dna {
+  transform: scale(1.1);
+}
+
+/* ===== عارض الفيديو (YouTube) عائم ===== */
+#videoOverlay {
+  display: none; /* مخفي افتراضيًا */
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 2000;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px); /* تأثير ضبابي */
+}
+
+.video-card {
+  background: #1e1e2f;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 1100px;
+  height: 80%;
+  max-height: 80vh; /* يمنع من الزيادة على 80% من ارتفاع الشاشة */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-family: 'Cairo', sans-serif; /* تأكد من توفر الخط */
+}
+
+.video-header {
+  padding: .75rem 1rem;
+  background: linear-gradient(90deg, #4f46e5, #0ea5e9);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.video-body {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  overflow: hidden; /* لمنع التمرير الداخلي */
+}
+
+.video-player {
+  flex: 2;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center; /* لتوسيط iframe إذا لزم */
+  justify-content: center;
+}
+
+.video-player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.video-ayah { /* هذه الحاوية إضافية من التصميم القديم، يمكن حذفها أو تعديلها */
+  flex: 1;
+  background: #111827;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.7;
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.05);
+  color: #f3f4f6;
+  overflow-y: auto; /* للسماح بالتمرير إذا كان النص كبيرًا */
+}
+
+.video-ayah blockquote {
+  color: #f3f4f6;
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* ===== عارض PDF عائم ===== */
+#pdfOverlay {
+  display: none; /* مخفي افتراضيًا */
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2000;
+  padding: 2rem;
+  backdrop-filter: blur(4px); /* تأثير ضبابي */
+}
+
+#pdfFrame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0 0 12px 12px; /* تفاصيل تصميم من التصميم القديم */
+}
+
+/* نمط الزر الأعلى */
+.pdf-header {
+  padding: .75rem 1rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px 12px 0 0; /* تفاصيل تصميم من التصميم القديم */
+}
+
+.pdf-header strong {
+  color: #333;
+}
+
+.pdf-header button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.pdf-header button:hover {
+  background-color: #c82333;
+}
+
+/* Accordion Style for Lessons */
+.lesson-accordion {
+  margin: 40px 0;
+  padding: 0 20px;
+}
+
+.lesson-item {
+  background: #f1f3f4;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.lesson-item:hover {
+  background: #e9edf0;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.lesson-item.collapsed {
+  background: #f8fafc;
+}
+
+.lesson-item .left-side {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.lesson-item .icon {
+  font-size: 1.2rem;
+  color: #6b7280;
+  transition: transform 0.3s ease;
+}
+
+.lesson-item.collapsed .icon {
+  transform: rotate(90deg);
+}
+
+.lesson-item .badge {
+  background: #d1fae5;
+  color: #059669;
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.lesson-item .title {
+  font-size: 1.1rem;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.lesson-item .right-side {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .video-body {
+    flex-direction: column; /* يجعل المشغل والنص جزءًا عموديًا على الشاشات الصغيرة */
+  }
+  .video-player {
+    min-height: 40vh; /* يعطي المشغل ارتفاعًا مناسبًا */
+  }
+  .video-ayah {
+    max-height: 150px; /* يحد ارتفاع النص الإضافي */
+    overflow-y: auto;
+  }
+  .page {
+    padding: 120px 16px 100px; /* تقليل الحشو على الهاتف */
+  }
+  .options-container {
+    grid-template-columns: 1fr; /* يجعل البطاقات تظهر عموديًا */
+  }
+  .lesson-accordion {
+    margin: 30px 0;
+    padding: 0 10px;
+  }
+  .lesson-item {
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+  .lesson-item .icon {
+    font-size: 1rem;
+  }
+  .lesson-item .badge {
+    padding: 3px 6px;
+    font-size: 0.75rem;
+  }
+  .lesson-item .title {
+    font-size: 1rem;
+  }
+} 
+/* Container Content Styles */
+.container-content {
+    background: #f8fafc;
+    border-radius: 0 0 12px 12px;
+    margin: -12px 0 20px 0;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    border-top: none;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.lesson-subitem {
+    background: white;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #e2e8f0;
+}
+
+.lesson-subitem:hover {
+    background: #f7fafc;
+    border-color: #4a6cf7;
+    transform: translateX(5px);
+}
+
+.lesson-subitem .left-side {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.lesson-subitem .title {
+    font-size: 1rem;
+    color: #2d3748;
+    font-weight: 500;
+}
+
+.lesson-subitem .right-side .duration {
+    background: #edf2f7;
+    color: #718096;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.lesson-count {
+    background: #4a6cf7;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Rotate icon when container is open */
+.lesson-item.active .icon {
+    transform: rotate(180deg);
+}
+  </style>
+</head>
+<body>
+
+  <header id="navbar">
+    <div class="nav-container">
+    <a href="#" class="logo" onclick="showPage('home')">
+  <i class="fas fa-dna" style="
+    color: white;
+    margin-right: 10px;
+    font-size: 1.5rem;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+  "></i>
+  <span class="logo-text">BioHelpTeam</span>
+</a>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav>
+        <ul id="nav-menu">
+          <li><a href="#" onclick="showPage('home')"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#" onclick="showPage('snv')"><i class="fas fa-code-branch"></i> snv</a></li>
+          <li class="dropdown">
+            
+            <a href="#" onclick="showPage('biology')"><i class="fas fa-flask"></i> Biology</a>
+            <div class="dropdown-content">
+              <a href="#" onclick="showPage('bio-cell')"><i class="fas fa-microscope"></i> Cell Biology</a>
+              <a href="#" onclick="showPage('bio-genetics')"><i class="fas fa-dna"></i> Genetics</a>
+              <a href="#" onclick="showPage('bio-evolution')"><i class="fas fa-seedling"></i> Evolution</a>
+              <a href="#" onclick="showPage('bio-ecology')"><i class="fas fa-tree"></i> Ecology</a>
+              <a href="#" onclick="showPage('bio-micro')"><i class="fas fa-virus"></i> Microbiology</a>
+              <a href="#" onclick="showPage('bio-botany')"><i class="fas fa-leaf"></i> Botany</a>
+            </div>
+          </li>
+        
+          <li><a href="#" onclick="showPage('biotech')"><i class="fas fa-dna"></i> Biotech</a></li>
+          <li><a href="#" onclick="showPage('sciencefood')"><i class="fas fa-utensils"></i> Science Food</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Home Page -->
+  <div id="home" class="page active">
+    <div class="hero-section">
+      <div class="hero-icon"><i class="fas fa-dna"></i></div>
+      <h1 class="hero-title">Welcome to BioHelp Team</h1>
+      <p class="hero-subtitle">Where Biology Meets Innovation & Precision</p>
+      <p class="mission-statement">
+        We are a passionate collective of scientists, developers, and educators dedicated to advancing knowledge in biology, biotechnology, and food science through cutting-edge digital platforms and collaborative research.
+      </p>
+    </div>
+
+    <!-- About the Team -->
+    <div style="text-align: center; max-width: 850px; margin: 60px auto;">
+      <h2 style="font-size: 2.4rem; color: #1a202c; margin-bottom: 20px; font-weight: 700;">Meet Our Core Team</h2>
+      <p style="font-size: 1.15rem; color: #4a5568; line-height: 1.8;">
+        Behind every breakthrough is a team of dedicated minds. At BioHelp Team, we combine scientific rigor with technical excellence to deliver unparalleled educational and research resources.
+      </p>
+    </div>
+
+    <!-- Team Grid -->
+    <div class="features-grid" style="margin-top: 30px;">
+      <!-- You: Walid -->
+      <div class="feature-card">
+        <div class="feature-icon" style="color: #4a6cf7;"><i class="fas fa-laptop-code"></i></div>
+        <h3 class="feature-title">Walid Roumili</h3>
+        <p class="feature-desc" style="font-weight: 600; color: #4a6cf7; margin-bottom: 12px;">Frontend Developer</p>
+        <p class="feature-desc">Architect of this platform. Passionate about clean code, UI/UX, and making science accessible through beautiful web experiences.</p>
+        <a href="https://portfolio.walid.cfd/" target="_blank" style="display: inline-block; margin-top: 16px; color: #6a11cb; font-weight: 600; text-decoration: none; border-bottom: 2px solid transparent; transition: all 0.3s;">
+          View Portfolio →
+        </a>
+      </div>
+
+      <!-- Member 2 -->
+      <div class="feature-card">
+        <div class="feature-icon" style="color: #6a11cb;"><i class="fas fa-flask"></i></div>
+        <h3 class="feature-title">Douaa</h3>
+        <p class="feature-desc" style="font-weight: 600; color: #6a11cb; margin-bottom: 12px;">Lead Biologist</p>
+        <p class="feature-desc"></p>
+      </div>
+
+      <!-- Member 3 -->
+      <div class="feature-card">
+        <div class="feature-icon" style="color: #38a169;"><i class="fas fa-utensils"></i></div>
+        <h3 class="feature-title">kamel Rais</h3>
+        <p class="feature-desc" style="font-weight: 600; color: #38a169; margin-bottom: 12px;"></p>
+        <p class="feature-desc"></p>
+      </div>
+    </div>
+
+    <!-- Expertise Areas -->
+    <div style="text-align: center; margin-top: 70px;">
+      <h2 style="color: #1a202c; margin-bottom: 24px; font-weight: 700;">Our Expertise Areas</h2>
+      <p style="color: #4a5568; max-width: 850px; margin: 0 auto 36px; font-size: 1.15rem;">
+        We specialize in cutting-edge research and education across multiple disciplines, providing valuable insights and resources to the scientific community.
+      </p>
+      <div class="options-container">
+        <div class="option-card" onclick="showPage('biology')">
+          <i class="fas fa-dna" style="color: #4a6cf7;"></i>
+          <h3>Biology</h3>
+          <p>Explore the fundamentals of life sciences</p>
+        </div>
+        <div class="option-card" onclick="showPage('biotech')">
+          <i class="fas fa-vial" style="color: #6a11cb;"></i>
+          <h3>Biotechnology</h3>
+          <p>Innovative applications of biological systems</p>
+        </div>
+        <div class="option-card" onclick="showPage('sciencefood')">
+          <i class="fas fa-apple-alt" style="color: #38a169;"></i>
+          <h3>Food Science</h3>
+          <p>Science behind nutrition and food safety</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Biology Page -->
+  <div id="biology" class="page">
+    <a href="#" class="back-btn" onclick="showPage('home')"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    <h1>Biology Section</h1>
+    <p>Explore the fascinating world of Biology. Learn about cells, genetics, evolution, and more.</p>
+    <div class="options-container">
+      <div class="option-card" onclick="showPage('bio-cell')">
+        <i class="fas fa-microscope" style="color: #4a6cf7;"></i>
+        <h3>Cell Biology</h3>
+        <p>Study of cells and their functions.</p>
+      </div>
+      <div class="option-card" onclick="showPage('bio-genetics')">
+        <i class="fas fa-dna" style="color: #6a11cb;"></i>
+        <h3>Genetics</h3>
+        <p>Study of genes and heredity.</p>
+      </div>
+      <div class="option-card" onclick="showPage('bio-evolution')">
+        <i class="fas fa-seedling" style="color: #38a169;"></i>
+        <h3>Evolution</h3>
+        <p>Development of species over time.</p>
+      </div>
+      <div class="option-card" onclick="showPage('bio-ecology')">
+        <i class="fas fa-tree" style="color: #319795;"></i>
+        <h3>Ecology</h3>
+        <p>Relationships in nature.</p>
+      </div>
+      <div class="option-card" onclick="showPage('bio-micro')">
+        <i class="fas fa-virus" style="color: #e53e3e;"></i>
+        <h3>Microbiology</h3>
+        <p>Study of microorganisms.</p>
+      </div>
+      <div class="option-card" onclick="showPage('bio-botany')">
+        <i class="fas fa-leaf" style="color: #38a169;"></i>
+        <h3>Botany</h3>
+        <p>Study of plants.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Biotech Page -->
+  <div id="biotech" class="page">
+    <a href="#" class="back-btn" onclick="showPage('home')"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    <h1>Biotech Section</h1>
+    <p>Discover the revolutionary field of biotechnology and its applications in medicine, agriculture, and industry.</p>
+    <div class="options-container">
+      <div class="option-card" onclick="window.open('https://t.me/+CEm1GMeGaEJjYzE0    ', '_blank')">
+        <i class="fab fa-telegram" style="color: #0088cc;"></i>
+        <h3>Join Telegram Group</h3>
+        <p>ALIMNTER with bio help team 26</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Science Food Page -->
+  <div id="sciencefood" class="page">
+    <a href="#" class="back-btn" onclick="showPage('home')"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    <h1>Science Food Section</h1>
+    <p>Learn about the science behind food: nutrition, safety, processing, and innovation.</p>
+    <div class="options-container">
+      <div class="option-card">
+        <i class="fas fa-shield-alt" style="color: #dd6b20;"></i>
+        <h3>Food Safety</h3>
+        <p>Safe handling of food.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SNV Main Page -->
+  <div id="snv" class="page">
+    <a href="#" class="back-btn" onclick="showPage('home')"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    <h1>SNV Options</h1>
+    <p>اختر الفئة:</p>
+    <div class="options-container">
+      <div class="option-card" onclick="showPage('snv-s1')">
+        <i class="fas fa-layer-group" style="color: #4a6cf7;"></i>
+        <h3>S1</h3>
+        <p>مجموعة الخيارات الأولى</p>
+      </div>
+      <div class="option-card" onclick="showPage('snv-s2')">
+        <i class="fas fa-layer-group" style="color: #6a11cb;"></i>
+        <h3>S2</h3>
+        <p>مجموعة الخيارات الثانية</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SNV - S1 Subpage -->
+  <div id="snv-s1" class="page">
+    <a href="#" class="back-btn" onclick="showPage('snv')"><i class="fas fa-arrow-left"></i> Back to SNV</a>
+    <h1>S1 Options</h1>
+    <p>اختر أحد الخيارات التالية:</p>
+    <div class="options-container">
+      <!-- ستة أزرار مختلفة -->
+      <div class="option-card" onclick="showPage('s1-option-1')">
+        <i class="fas fa-graduation-cap" style="color: #4a6cf7;"></i>
+        <h3>chemistry S1</h3>
+        <p>Description for S1 chemistry</p>
+      </div>
+      <div class="option-card" onclick="showPage('s1-option-2')">
+        <i class="fas fa-flask" style="color: #6a11cb;"></i>
+        <h3> Geology S1</h3>
+        <p>Description for Geology S1</p>
+      </div>
+      <div class="option-card" onclick="showPage('s1-option-3')">
+        <i class="fas fa-book" style="color: #38a169;"></i>
+        <h3> Math S1</h3>
+        <p>Description for S1 Option 3</p>
+      </div>
+      <div class="option-card" onclick="showPage('s1-option-4')">
+        <i class="fas fa-vial" style="color: #e53e3e;"></i>
+        <h3>BIO CELL S1</h3>
+        <p>Description for BIO CELL S1</p>
+      </div>
+     
+    </div>
+  </div>
+
+  <!-- SNV - S2 Subpage -->
+  <div id="snv-s2" class="page">
+    <a href="#" class="back-btn" onclick="showPage('snv')"><i class="fas fa-arrow-left"></i> Back to SNV</a>
+    <h1>S2 Options</h1>
+    <p>اختر أحد الخيارات التالية:</p>
+    <div class="options-container">
+      <!-- ستة أزرار مختلفة -->
+      <div class="option-card" onclick="showPage('s2-option-1')">
+        <i class="fas fa-graduation-cap" style="color: #6a11cb;"></i>
+        <h3>HISTOLOGY</h3>
+        <p>Description for HISTOLOGY</p>
+      </div>
+      <div class="option-card" onclick="showPage('s2-option-2')">
+        <i class="fas fa-flask" style="color: #4a6cf7;"></i>
+        <h3>EMBRYOULOGY</h3>
+        <p>Description for EMBRYOULOGY</p>
+      </div>
+      <div class="option-card" onclick="showPage('s2-option-3')">
+        <i class="fas fa-book" style="color: #38a169;"></i>
+        <h3> CHEMISTRY 2</h3>
+        <p>Description for  CHEMISTRY 2</p>
+      </div>
+      <div class="option-card" onclick="showPage('s2-option-4')">
+        <i class="fas fa-vial" style="color: #e53e3e;"></i>
+        <h3>PHYSIC S2</h3>
+        <p>Description for PHYSIC S2</p>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- S1 - Sub Option Pages -->
+  <div id="s1-option-1" class="page">
+    <a href="#" class="back-btn" onclick="showPage('snv-s1')"><i class="fas fa-arrow-left"></i> Back to S1</a>
+    <h1>chemistry S1</h1>
+    <p>This is the content for S1 Option 1. You can add more details here.</p>
+    <!-- Accordion Style Lessons -->
+    <div class="lesson-accordion">
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/NIwcDnFjj98', {title: 'Lesson 1', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 1</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/Aoi4j8es4gQ', {title: 'Lesson 2', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 2</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/hSkJzE2Vz_w', {title: 'Lesson 3', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 3</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/UDmrRWeFWwU', {title: 'Lesson 4', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 4</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/QkqOt1e3fyI', {title: 'Lesson 5', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 5</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/BngJWgvhANc', {title: 'Lesson 6', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 6</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/CP35NuspGlk', {title: 'Lesson 7', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 7</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/ybbieEcDbJw', {title: 'Lesson 8 (Short)', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 8 (Short)</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/ta-oOOerMZA', {title: 'Lesson 9', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 9</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/_xbRz89gVKA', {title: 'Lesson 10', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 10</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/vPOnk5sCVUs', {title: 'Lesson 11', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 11</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/Z8YnC42yWk8', {title: 'Lesson 12', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 12</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/sK5tMadW3pc', {title: 'Lesson 13', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 13</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/bvPaa5Il44g', {title: 'Lesson 14', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 14</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/videoseries?list=PLvYKeChoC24DyKnYuZbEuBAKhMOyaT2ia', {title: 'Lesson 15 (Playlist)', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 15 (Playlist)</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/wEYtzy8L1vM', {title: 'Lesson 16', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 16</span>
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/M6YRjfdRfvI', {title: 'Lesson 17', ayah: ''})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 17</span>
+    </div>
+  </div>
+</div>
+
+  </div>
+
+  <div id="s1-option-2" class="page">
+    <a href="#" class="back-btn" onclick="showPage('snv-s1')"><i class="fas fa-arrow-left"></i> Back to S1</a>
+    <h1> GEOLOGY S1</h1>
+    <p>This is the content for Geology S1. You can add more details here.</p>
+    <div class="lesson-accordion">
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/y3hPFCW9f7M', {title: 'Lesson 1', ayah: 'Verse related to Lesson 1'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 1</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/E8KFDfoRwGA', {title: 'Lesson 2', ayah: 'Verse related to Lesson 2'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 2</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/M49iiuyeOHc', {title: 'Lesson 3', ayah: 'Verse related to Lesson 3'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 3</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/3b3yGololaY', {title: 'Lesson 4', ayah: 'Verse related to Lesson 4'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 4</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/videoseries?list=PLT6_0Hl4-GJgs9jGEpwf4sbxrWU3b0R-A', {title: 'Lesson 5', ayah: 'Verse related to Lesson 5'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 5 (Playlist)</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/videoseries?list=PLT6_0Hl4-GJgs9jGEpwf4sbxrWU3b0R-A', {title: 'Lesson 6', ayah: 'Verse related to Lesson 6'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 6 (Playlist)</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+</div>
+
+  </div>
+
+ <div id="s1-option-3" class="page">
+    <a href="#" class="back-btn" onclick="showPage('snv-s1')"><i class="fas fa-arrow-left"></i> Back to S1</a>
+    <h1> Math S1</h1>
+    <p>This is the content for  Math S1. You can add more details here.</p>
+    
+    <!-- Container Accordion -->
+    <div class="lesson-accordion">
+        <!-- Container 1: Baze Math S1 -->
+        <div class="lesson-item" onclick="toggleContainer('baze-math-content')">
+            <div class="left-side">
+                <i class="fas fa-chevron-down icon" id="baze-math-icon"></i>
+                
+                <span class="title">Baze Math S1</span>
+            </div>
+            <div class="right-side">
+                <span class="lesson-count">5 دروس</span>
+            </div>
+        </div>
+        
+        <!-- Baze Math Content -->
+      <div id="baze-math-content" class="container-content" style="display: none;">
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/u_D0Kt8_Seg', {title: 'Lesson 1'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #4a6cf7;"></i>
+            <span class="title">Lesson 1</span>
+        </div>
+        <div class="right-side">
+           
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/lIzaR5aJY2o', {title: 'Lesson 2'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #4a6cf7;"></i>
+            <span class="title">Lesson 2</span>
+        </div>
+        <div class="right-side">
+           
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/fiRNyqe989I', {title: 'Lesson 3'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #4a6cf7;"></i>
+            <span class="title">Lesson 3</span>
+        </div>
+        <div class="right-side">
+           
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/IwO9Mg0smdc', {title: 'Lesson 4'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #4a6cf7;"></i>
+            <span class="title">Lesson 4</span>
+        </div>
+        <div class="right-side">
+           
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/GCQbheWbYq0', {title: 'Lesson 5'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #4a6cf7;"></i>
+            <span class="title">Lesson 5</span>
+        </div>
+        <div class="right-side">
+            
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/txLge4_OrGk', {title: 'Lesson 6'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #4a6cf7;"></i>
+            <span class="title">Lesson 6</span>
+        </div>
+        <div class="right-side">
+           
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/q58GvLEIxi0', {title: 'Lesson 7'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #4a6cf7;"></i>
+            <span class="title">Lesson 7</span>
+        </div>
+        <div class="right-side">
+            
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/2al3Sl_cbPY', {title: 'Lesson 8'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #4a6cf7;"></i>
+            <span class="title">Lesson 8</span>
+        </div>
+        <div class="right-side">
+            
+        </div>
+    </div>
+</div>
+
+
+        <!-- Container 2: Math Avns S1 -->
+        <div class="lesson-item" onclick="toggleContainer('math-avns-content')">
+            <div class="left-side">
+                <i class="fas fa-chevron-down icon" id="math-avns-icon"></i>
+                
+                <span class="title">Math Avns S1</span>
+            </div>
+            <div class="right-side">
+                <span class="lesson-count">4 دروس</span>
+            </div>
+        </div>
+        
+        <!-- Math Avns Content -->
+        <div id="math-avns-content" class="container-content" style="display: none;">
+            <div class="lesson-subitem" onclick="openVideo('https://youtu.be/XOUwIdufY9Y?feature=shared', {title: 'النهايات والاتصال'})">
+                <div class="left-side">
+                    <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+                    <span class="title">lesson 1</span>
+                </div>
+                <div class="right-side">
+                   
+                </div>
+            </div>
+            
+            <div class="lesson-subitem" onclick="openVideo('https://youtu.be/M5MaGUO0JDs?feature=shared', {title: 'المشتقات والتطبيقات'})">
+                <div class="left-side">
+                    <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+                    <span class="title">lesson 2</span>
+                </div>
+                <div class="right-side">
+                    
+                </div>
+            </div>
+            
+            <div class="lesson-subitem" onclick="openVideo('https://youtube.com/playlist?list=PLJ6SDB-i5ilmKmA-TFmRfgKgcKF5SULyY&feature=shared', {title: 'التكامل المحدد'})">
+                <div class="left-side">
+                    <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+                    <span class="title">lesson 3</span>
+                </div>
+                <div class="right-side">
+                    
+                </div>
+            </div>
+            
+            <div class="lesson-subitem" onclick="openVideo('https://youtu.be/Srh1bPHbxDU?feature=shared', {title: 'التكامل غير المحدد'})">
+                <div class="left-side">
+                    <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+                    <span class="title">lesson 4</span>
+                </div>
+                <div class="right-side">
+                    
+                </div>
+            </div>
+             <div class="lesson-subitem" onclick="openVideo('https://youtu.be/NfQsFjJevGY?feature=shared', {title: 'التكامل غير المحدد'})">
+                <div class="left-side">
+                    <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+                    <span class="title">lesson 5</span>
+                </div>
+                <div class="right-side">
+                    
+                </div>
+            </div>
+             <div class="lesson-subitem" onclick="openVideo('https://youtu.be/vYsy2gpz1sM?feature=shared', {title: 'التكامل غير المحدد'})">
+                <div class="left-side">
+                    <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+                    <span class="title">lesson 6</span>
+                </div>
+                <div class="right-side">
+                </div>
+            </div>
+             <div class="lesson-subitem" onclick="openVideo('https://youtu.be/vFmPYG7agbI?feature=shared', {title: 'التكامل غير المحدد'})">
+                <div class="left-side">
+                    <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+                    <span class="title">lesson 7</span>
+                </div>
+                <div class="right-side">
+                </div>
+            </div>
+             <div class="lesson-subitem" onclick="openVideo('https://youtu.be/JeR5A0JAHX8?feature=shared', {title: 'التكامل غير المحدد'})">
+                <div class="left-side">
+                    <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+                    <span class="title">lesson 8</span>
+                </div>
+                <div class="right-side">
+                </div>
+            </div>
+             <div class="lesson-subitem" onclick="openVideo('https://youtu.be/bWve5Idd7OU?feature=shared', {title: 'التكامل غير المحدد'})">
+                <div class="left-side">
+                    <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+                    <span class="title">lesson 9</span>
+                </div>
+                <div class="right-side">
+                </div>
+            </div>
+            <div class="lesson-subitem" onclick="openVideo('https://youtube.com/playlist?list=PL-0ECJbCJMahqEt_zL4VliYi4ZQolZAL8&si=6Gy9EsXuoczqGQ2f', {title: 'التكامل غير المحدد'})">
+                <div class="left-side">
+                    <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+                    <span class="title">lesson 10</span>
+                </div>
+                <div class="right-side">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <div id="s1-option-4" class="page">
+    <a href="#" class="back-btn" onclick="showPage('snv-s1')"><i class="fas fa-arrow-left"></i> Back to S1</a>
+    <h1>BIO CELL S1</h1>
+    <p>This is the content for BIO CELL S1. You can add more details here.</p>
+    
+    <div class="lesson-accordion">
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/lV0s0oxVdTk', {title: 'Lesson 1', ayah: 'Verse related to Lesson 1'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      
+      <span class="title">Lesson 1</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/sLRe744aI9c', {title: 'Lesson 2', ayah: 'Verse related to Lesson 2'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      
+      <span class="title">Lesson 2</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/Zy6BxPJdJJk', {title: 'Lesson 3', ayah: 'Verse related to Lesson 3'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      
+      <span class="title">Lesson 3</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/0xmVn7jEgzU', {title: 'Lesson 4', ayah: 'Verse related to Lesson 4'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      
+      <span class="title">Lesson 4</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/AZOikCrFqjE', {title: 'Lesson 5', ayah: 'Verse related to Lesson 5'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+     
+      <span class="title">Lesson 5</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/Didrc3wJ3E8', {title: 'Lesson 6', ayah: 'Verse related to Lesson 6'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      
+      <span class="title">Lesson 6</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/PJmtkQpqJxE', {title: 'Lesson 7', ayah: 'Verse related to Lesson 7'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+     
+      <span class="title">Lesson 7</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/lUMt9Nd13AY', {title: 'Lesson 8', ayah: 'Verse related to Lesson 8'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      
+      <span class="title">Lesson 8</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/JRTFijataOc', {title: 'Lesson 9', ayah: 'Verse related to Lesson 9'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+     
+      <span class="title">Lesson 9</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/w8iIIc_td5U', {title: 'Lesson 10', ayah: 'Verse related to Lesson 10'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      
+      <span class="title">Lesson 10</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/65kM6yoi0SA', {title: 'Lesson 11', ayah: 'Verse related to Lesson 11'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      
+      <span class="title">Lesson 11</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/j6P4uX55coM', {title: 'Lesson 12', ayah: 'Verse related to Lesson 12'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      
+      <span class="title">Lesson 12</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+</div>
+
+</div>
+
+  
+      </div>
+    </div>
+  </div>
+
+  <!-- S2 - Sub Option Pages -->
+  <div id="s2-option-1" class="page">
+    <a href="#" class="back-btn" onclick="showPage('snv-s2')"><i class="fas fa-arrow-left"></i> Back to S2</a>
+    <h1>S2 Option 1 Content</h1>
+    <p>This is the content for S2 Option 1. You can add more details here.</p>
+   <div class="lesson-accordion">
+    <!-- Container 1: الرياضيات الأساسية -->
+    <div class="lesson-item" onclick="toggleContainer('math-basic-content')">
+        <div class="left-side">
+            <i class="fas fa-chevron-down icon" id="math-basic-icon"></i>
+            
+            <span class="title"> EPITHELIUM TISSUE</span>
+        </div>
+        <div class="right-side">
+            <span class="lesson-count"> 10 lessons</span>
+        </div>
+    </div>
+    
+    <!-- الرياضيات الأساسية Content -->
+    <div id="math-basic-content" class="container-content" style="display: none;">
+        <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/another_video_id', {title: 'الوحدة الأولى: التفاضل', ayah: 'Verse related to Lesson 1-1'})">
+            <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 1</span>
+        </div>
+        <div class="right-side">
+            
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/67J9zv_taWU', {title: 'Lesson 2', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 2</span>
+        </div>
+        <div class="right-side">
+            
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/-XENuno86TU', {title: 'Lesson 3', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 3</span>
+        </div>
+        <div class="right-side">
+            
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/UrlsvGb3-wA', {title: 'Lesson 4', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 4</span>
+        </div>
+        <div class="right-side">
+            
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/j-hBrjCqaaM', {title: 'Lesson 5', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 5</span>
+        </div>
+        <div class="right-side">
+           
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/o_cZo1WyAeA', {title: 'Lesson 6', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 6</span>
+        </div>
+        <div class="right-side">
+            
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/uGd9Fneukwo', {title: 'Lesson 7', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 7</span>
+        </div>
+        <div class="right-side">
+            
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/j7rvsmqm3CI', {title: 'Lesson 8', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 8</span>
+        </div>
+        <div class="right-side">
+            
+        </div>
+        </div>
+    </div>
+
+    <!-- Container 2: الرياضيات المتقدمة -->
+    <div class="lesson-item" onclick="toggleContainer('math-advanced-content')">
+        <div class="left-side">
+            <i class="fas fa-chevron-down icon" id="math-advanced-icon"></i>
+            
+            <span class="title">CONNECTIVE TISSUE</span>
+        </div>
+        <div class="right-side">
+            <span class="lesson-count">12 lessons</span>
+        </div>
+    </div>
+    
+    <!-- الرياضيات المتقدمة Content -->
+    <div id="math-advanced-content" class="container-content" style="display: none;">
+        <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/fxErP2a0_po', {title: 'Lesson 1', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 1</span>
+        </div>
+        <div class="right-side">
+           
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/Z2lJx0OBgs4', {title: 'Lesson 2', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 2</span>
+        </div>
+        <div class="right-side">
+          
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/92VgTpObxGU', {title: 'Lesson 3', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 3</span>
+        </div>
+        <div class="right-side">
+          
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/S5cC0oE0FLs', {title: 'Lesson 4', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 4</span>
+        </div>
+        <div class="right-side">
+          
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/XcM5l2mXTJQ', {title: 'Lesson 5', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 5</span>
+        </div>
+        <div class="right-side">
+          
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/-7Dftbd_dWc', {title: 'Lesson 6', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 6</span>
+        </div>
+        <div class="right-side">
+           
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/3-w6MPtTm5k', {title: 'Lesson 7', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 7</span>
+        </div>
+        <div class="right-side">
+          
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/UiLqKWd_xj4', {title: 'Lesson 8', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 8</span>
+        </div>
+        <div class="right-side">
+          
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/DPiS_LVEHmI', {title: 'Lesson 9', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 9</span>
+        </div>
+        <div class="right-side">
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/TP_9LavwRNE', {title: 'Lesson 10', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 10</span>
+        </div>
+        <div class="right-side">
+          
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/Rcd2QAVSzHM', {title: 'Lesson 11', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 11</span>
+        </div>
+        <div class="right-side">
+           
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/6XXZ5tN5Q4g', {title: 'Lesson 12', ayah: 'Relevant text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #6a11cb;"></i>
+            <span class="title">Lesson 12</span>
+        </div>
+        <div class="right-side">
+            
+        </div>
+    </div>
+    </div>
+
+    <!-- Container 3: الإحصاء والاحتمالات -->
+    <div class="lesson-item" onclick="toggleContainer('math-statistics-content')">
+        <div class="left-side">
+            <i class="fas fa-chevron-down icon" id="math-statistics-icon"></i>
+           
+            <span class="title"> BLOOD TISSUE</span>
+        </div>
+        <div class="right-side">
+            <span class="lesson-count">4 lessons</span>
+        </div>
+    </div>
+    
+    <!-- الإحصاء والاحتمالات Content -->
+    <div id="math-statistics-content" class="container-content" style="display: none;">
+         <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/yj7bfZKlIp8', {title: 'Lesson 1', ayah: 'Review text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #38a169;"></i>
+            <span class="title">Lesson 1</span>
+        </div>
+        <div class="right-side">
+            
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/FGv72d_GsZ4', {title: 'Lesson 2', ayah: 'Review text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #38a169;"></i>
+            <span class="title">Lesson 2</span>
+        </div>
+        <div class="right-side">
+          
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/cpMpzHBtBXc', {title: 'Lesson 3', ayah: 'Review text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #38a169;"></i>
+            <span class="title">Lesson 3</span>
+        </div>
+        <div class="right-side">
+            
+        </div>
+    </div>
+
+    <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/YTNsDXwSoD4', {title: 'Lesson 4', ayah: 'Review text'})">
+        <div class="left-side">
+            <i class="fas fa-play-circle" style="color: #38a169;"></i>
+            <span class="title">Lesson 4</span>
+        </div>
+        <div class="right-side">
+            
+        </div>
+    </div>
+    </div>
+     <div class="lesson-item" onclick="toggleContainer('math-statistics')">
+        <div class="left-side">
+            <i class="fas fa-chevron-down icon" id="math-statistics-icon"></i>
+           
+            <span class="title">CARTILAGE TISSUE</span>
+        </div>
+        <div class="right-side">
+            <span class="lesson-count">2 lessons</span>
+        </div>
+    </div>
+     <div id="math-statistics" class="container-content" style="display: none;">
+        <div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/XlXhOkoiIxM', {title: 'Lesson 1', ayah: 'Review text'})">
+  <div class="left-side">
+    <i class="fas fa-play-circle" style="color: #38a169;"></i>
+    <span class="title">Lesson 1</span>
+  </div>
+  <div class="right-side">
+    <!-- مدة الفيديو يمكن إضافتها لاحقًا -->
+  </div>
+</div>
+
+<div class="lesson-subitem" onclick="openVideo('https://www.youtube.com/embed/B7abU-onT_s', {title: 'Lesson 2', ayah: 'Review text'})">
+  <div class="left-side">
+    <i class="fas fa-play-circle" style="color: #38a169;"></i>
+    <span class="title">Lesson 2</span>
+  </div>
+  <div class="right-side">
+    <!-- مدة الفيديو يمكن إضافتها لاحقًا -->
+  </div>
+</div>
+
+     </div>
+</div>
+  </div>
+
+  <div id="s2-option-2" class="page">
+    <a href="#" class="back-btn" onclick="showPage('snv-s2')"><i class="fas fa-arrow-left"></i> Back to S2</a>
+    <h1>EMBRYOULOGY</h1>
+    <p>This is the content for EMBRYOULOGY. You can add more details here.</p>
+    <div class="lesson-accordion">
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/-r6WIwif_dM', {title: 'Lesson 1', ayah: 'Another verse or text (Example)'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+     
+      <span class="title">Lesson 1</span>
+    </div>
+    <div class="right-side">
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/HuCWbnhY6yA', {title: 'Lesson 2', ayah: 'Another verse or text (Example)'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      
+      <span class="title">Lesson 2</span>
+    </div>
+    <div class="right-side">
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/ADlYn0ImTNg', {title: 'Lesson 3', ayah: 'Relevant text (Example)'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+     
+      <span class="title">Lesson 3</span>
+    </div>
+    <div class="right-side">
+    </div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/7SK-WPnF1Dc', {title: 'Lesson 4', ayah: 'Procedure verse (Example)'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      
+      <span class="title">Lesson 4</span>
+    </div>
+    <div class="right-side">
+    </div>
+  </div>
+</div>
+
+  </div>
+
+  <div id="s2-option-3" class="page">
+    <a href="#" class="back-btn" onclick="showPage('snv-s2')"><i class="fas fa-arrow-left"></i> Back to S2</a>
+    <h1> CHEMISTRY 2</h1>
+    <p>This is the content for  CHEMISTRY 2. You can add more details here.</p>
+   <div class="lesson-accordion">
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/videoseries?list=PLtTEwvEcL9XeEws-ZbjV_lNyuAUzn3h_N', {title: 'Lesson 1 (Playlist)', ayah: 'Playlist videos'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 1 (Playlist)</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/videoseries?list=PL5hJ6VrfsPuzeK07wkF122oIXSfY0UTmY', {title: 'Lesson 2 (Playlist)', ayah: 'Playlist videos'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 2 (Playlist)</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+</div>
+
+  </div>
+
+  <div id="s2-option-4" class="page">
+    <a href="#" class="back-btn" onclick="showPage('snv-s2')"><i class="fas fa-arrow-left"></i> Back to S2</a>
+    <h1>PHYSIC S2</h1>
+    <p>This is the content for PHYSIC S2. You can add more details here.</p>
+    <div class="lesson-accordion">
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/FVl1uT1jk1k', {title: 'Lesson 1', ayah: 'Video'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 1</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/-q18cgk9_Bs', {title: 'Lesson 2', ayah: 'Video'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 2</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/B3ZvyV27UOI', {title: 'Lesson 3', ayah: 'Video'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 3</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/videoseries?list=PLJ6SDB-i5ilmaIP114TvyIcbTqf5Hr2eT', {title: 'Lesson 4 (Playlist)', ayah: 'Playlist'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 4 (Playlist)</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/KLs6OoqosJw', {title: 'Lesson 5', ayah: 'Video'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 5</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/HmGmhXeiQr0', {title: 'Lesson 6', ayah: 'Video'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 6</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/lKeFcsvRzvE', {title: 'Lesson 7', ayah: 'Video'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 7</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/l2yuDvwYq5g', {title: 'Lesson 8', ayah: 'Video'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 8</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/JX9Ja2N0mco', {title: 'Lesson 9', ayah: 'Video'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 9</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/7-CzpOVtpek', {title: 'Lesson 10', ayah: 'Video'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 10</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/kyThojNKtlE', {title: 'Lesson 11', ayah: 'Video'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 11</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/hGJHmifxhCw', {title: 'Lesson 12', ayah: 'Video'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 12</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/gSYRWmRJw1w', {title: 'Lesson 13', ayah: 'Video'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 13</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+
+  <div class="lesson-item" onclick="openVideo('https://www.youtube.com/embed/4H5RMsSdypA', {title: 'Lesson 14', ayah: 'Video'})">
+    <div class="left-side">
+      <i class="fas fa-chevron-down icon"></i>
+      <span class="title">Lesson 14</span>
+    </div>
+    <div class="right-side"></div>
+  </div>
+</div>
+
+  </div>
+
+ 
+
+ 
+
+  <!-- Sub Pages -->
+  <div id="bio-cell" class="page">
+    <a href="#" class="back-btn" onclick="showPage('biology')"><i class="fas fa-arrow-left"></i> Back to Biology</a>
+    <h1>Cell Biology</h1>
+    <p>Cell biology is a branch of biology that studies the structure and function of the cell, also known as the basic unit of life.</p>
+  </div>
+
+  <div id="bio-genetics" class="page">
+    <a href="#" class="back-btn" onclick="showPage('biology')"><i class="fas fa-arrow-left"></i> Back to Biology</a>
+    <h1>Genetics</h1>
+    <p>Genetics is the study of genes, genetic variation, and heredity in organisms.</p>
+  </div>
+
+  <div id="bio-evolution" class="page">
+    <a href="#" class="back-btn" onclick="showPage('biology')"><i class="fas fa-arrow-left"></i> Back to Biology</a>
+    <h1>Evolution</h1>
+    <p>Evolution is the process by which different kinds of living organisms are thought to have developed and diversified from earlier forms.</p>
+  </div>
+
+  <div id="bio-ecology" class="page">
+    <a href="#" class="back-btn" onclick="showPage('biology')"><i class="fas fa-arrow-left"></i> Back to Biology</a>
+    <h1>Ecology</h1>
+    <p>Ecology is the branch of biology that deals with the relations of organisms to one another and to their physical surroundings.</p>
+  </div>
+
+  <div id="bio-micro" class="page">
+    <a href="#" class="back-btn" onclick="showPage('biology')"><i class="fas fa-arrow-left"></i> Back to Biology</a>
+    <h1>Microbiology</h1>
+    <p>Microbiology is the scientific study of microorganisms, such as bacteria, viruses, archaea, fungi, and protozoa.</p>
+  </div>
+
+  <div id="bio-botany" class="page">
+    <a href="#" class="back-btn" onclick="showPage('biology')"><i class="fas fa-arrow-left"></i> Back to Biology</a>
+    <h1>Botany</h1>
+    <p>Botany is the scientific study of plants, including their physiology, structure, genetics, ecology, distribution, classification, and economic importance.</p>
+  </div>
+
+  <!-- عارض الفيديو (YouTube) عائم -->
+  <div id="videoOverlay">
+    <div class="video-card">
+      <div class="video-header">
+        <strong id="videoTitle">Video Title</strong>
+        <button class="btn btn-sm btn-danger" onclick="closeVideo()">إغلاق</button>
+      </div>
+      <div class="video-body">
+        <div class="video-player">
+          <iframe id="videoPlayerFrame" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="video-ayah" id="videoAyah">
+          <!-- يمكن ملء هذا القسم بنص إضافي مرتبط بالفيديو -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- عارض PDF عائم -->
+  <div id="pdfOverlay">
+    <div class="pdf-header">
+        <strong id="pdfTitle">PDF Preview</strong>
+        <button class="btn btn-sm btn-danger" onclick="closePdf()">إغاء المعاينة</button>
+    </div>
+    <iframe id="pdfFrame" src=""></iframe>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>About Bio Team</h3>
+        <p>Providing cutting-edge knowledge in Biology, Biotech, and Food Science. Dedicated to education and innovation.</p>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="#" onclick="showPage('home')">Home</a>
+        <a href="#" onclick="showPage('biology')">Biology</a>
+        <a href="#" onclick="showPage('biotech')">Biotech</a>
+        <a href="#" onclick="showPage('sciencefood')">Science Food</a>
+        <a href="#" onclick="showPage('snv')">SNV</a>
+      </div>
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p>Email: info@bioteam.com</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://t.me/+CEm1GMeGaEJjYzE0    " target="_blank"><i class="fab fa-telegram"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Need Help?</h3>
+        <p>Send us your email and we'll contact you as soon as possible.</p>
+        <form style="margin-top: 18px;">
+          <input type="email" placeholder="Enter your email" style="padding: 12px; width: 100%; border-radius: 8px; border: none; margin-bottom: 12px; background: rgba(255,255,255,0.1); color: white;">
+          <button type="submit" style="background: #4a6cf7; color: white; padding: 12px 18px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; width: 100%;">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 Bio-help-Team. All Rights Reserved. Designed with ❤️ by Walid Roumili.
+    </div>
+  </footer>
+
+  <script>
+    let lastScrollTop = 0;
+    const navbar = document.getElementById('navbar');
+
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      window.scrollTo(0, 0);
+      document.querySelectorAll('.dropdown-content').forEach(d => d.style.display = 'none');
+      const menu = document.getElementById('nav-menu');
+      if (menu.classList.contains('show')) menu.classList.remove('show');
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById('nav-menu').classList.toggle('show');
+    }
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      navbar.style.top = (scrollTop > lastScrollTop && scrollTop > 100) ? '-100px' : '0';
+      lastScrollTop = scrollTop;
+    });
+
+    // ===== دوال فتح وإغلاق عارض الفيديو =====
+    function openVideo(url, options = {}) {
+        const overlay = document.getElementById('videoOverlay');
+        const titleElement = document.getElementById('videoTitle');
+        const ayahElement = document.getElementById('videoAyah');
+        const frame = document.getElementById('videoPlayerFrame');
+
+        // تأكد أن الرابط هو رابط iframe من YouTube
+        if (!url.includes('youtube.com/embed/')) {
+            console.error("URL is not a valid YouTube embed URL:", url);
+            return;
+        }
+
+        frame.src = url + (url.includes('?') ? '&' : '?') + 'autoplay=1'; // إضافة autoplay=1 لبدء التشغيل تلقائيًا
+        titleElement.textContent = options.title || 'Video';
+        ayahElement.textContent = options.ayah || 'Related text will appear here...'; // استخدم 'ayah' أو أي اسم آخر
+
+        overlay.style.display = 'flex'; // استخدم 'flex' لتوسيط المحتوى
+        document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
+    }
+
+    function closeVideo() {
+        const overlay = document.getElementById('videoOverlay');
+        const frame = document.getElementById('videoPlayerFrame');
+        frame.src = ''; // إفراغ مصدر الفريم لوقف التشغيل
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto'; // استعادة التمرير
+    }
+
+    // ===== دوال فتح وإغلاق عارض PDF =====
+    function openPdf(url, title = 'PDF Preview') {
+        const overlay = document.getElementById('pdfOverlay');
+        const titleElement = document.getElementById('pdfTitle');
+        const frame = document.getElementById('pdfFrame');
+
+        // يمكنك إضافة منطق هنا لتحويل روابط Google Drive إلى روابط عرض داخل iframe إذا لزم
+        frame.src = url;
+        titleElement.textContent = title;
+
+        overlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePdf() {
+        const overlay = document.getElementById('pdfOverlay');
+        const frame = document.getElementById('pdfFrame');
+        frame.src = ''; // إفراغ مصدر الفريم
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // إغلاق النوافذ عند النقر على الخلفية
+    document.getElementById('videoOverlay').addEventListener('click', function(e) {
+        if (e.target === this) closeVideo();
+    });
+
+    document.getElementById('pdfOverlay').addEventListener('click', function(e) {
+        if (e.target === this) closePdf();
+    });
+    // دالة لفتح وإغلاق الكونتينر
+function toggleContainer(containerId) {
+    const content = document.getElementById(containerId);
+    const icon = document.getElementById(containerId.replace('-content', '-icon'));
+    const lessonItem = content.previousElementSibling;
+    
+    if (content.style.display === 'none' || content.style.display === '') {
+        // إغلاق جميع الكونتينرات الأخرى أولاً
+        document.querySelectorAll('.container-content').forEach(container => {
+            container.style.display = 'none';
+        });
+        document.querySelectorAll('.lesson-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        document.querySelectorAll('.icon').forEach(icon => {
+            icon.style.transform = 'rotate(0deg)';
+        });
+        
+        // فتح الكونتينر المطلوب
+        content.style.display = 'block';
+        lessonItem.classList.add('active');
+        icon.style.transform = 'rotate(180deg)';
+    } else {
+        content.style.display = 'none';
+        lessonItem.classList.remove('active');
+        icon.style.transform = 'rotate(0deg)';
+    }
+}
+
+// إغلاق جميع الكونتينرات عند تغيير الصفحة
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+    window.scrollTo(0, 0);
+    document.querySelectorAll('.dropdown-content').forEach(d => d.style.display = 'none');
+    const menu = document.getElementById('nav-menu');
+    if (menu.classList.contains('show')) menu.classList.remove('show');
+    
+    // إغلاق جميع الكونتينرات
+    document.querySelectorAll('.container-content').forEach(container => {
+        container.style.display = 'none';
+    });
+    document.querySelectorAll('.lesson-item').forEach(item => {
+        item.classList.remove('active');
+    });
+    document.querySelectorAll('.icon').forEach(icon => {
+        icon.style.transform = 'rotate(0deg)';
+    });
+}
+  </script>
+
+</body>
+</html>
